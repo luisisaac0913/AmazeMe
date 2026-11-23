@@ -8,7 +8,10 @@
     const qualityRange = document.getElementById("img-quality");
     const qualityValue = document.getElementById("img-quality-value");
     const qualityHint = document.getElementById("img-quality-hint");
+    const maxWidthWrap = document.getElementById("img-max-width-wrap");
     const maxWidthInput = document.getElementById("img-max-width");
+    const icoSizeWrap = document.getElementById("img-ico-size-wrap");
+    const icoSizeSelect = document.getElementById("img-ico-size");
     const originalPreview = document.getElementById("img-original-preview");
     const compressedPreview = document.getElementById("img-compressed-preview");
     const originalStats = document.getElementById("img-original-stats");
@@ -43,17 +46,82 @@
     function getExtensionForMime(mime) {
         if (mime === "image/png") return "png";
         if (mime === "image/webp") return "webp";
+        if (mime === "image/x-icon") return "ico";
         return "jpg";
     }
 
-    function updateQualityAvailability() {
-        const isPng = formatSelect.value === "image/png";
-        qualityRange.disabled = isPng;
+    /**
+     * Empaqueta un Blob PNG cuadrado dentro de un contenedor .ico estándar (ICONDIR + ICONDIRENTRY).
+     */
+    async function buildIcoFromPngBlob(pngBlob, size) {
+        const pngBuffer = await pngBlob.arrayBuffer();
+        const headerSize = 22; // 6 bytes ICONDIR + 16 bytes ICONDIRENTRY
+        const icoBuffer = new ArrayBuffer(headerSize + pngBuffer.byteLength);
+        const view = new DataView(icoBuffer);
+
+        // ICONDIR
+        view.setUint16(0, 0, true); // Reservado
+        view.setUint16(2, 1, true); // Tipo: 1 = ICO
+        view.setUint16(4, 1, true); // Cantidad de imágenes: 1
+
+        // ICONDIRENTRY (0 representa 256 px en el formato ICO)
+        const dimByte = size >= 256 ? 0 : size;
+        view.setUint8(6, dimByte);
+        view.setUint8(7, dimByte);
+        view.setUint8(8, 0); // Paleta (0 = sin paleta)
+        view.setUint8(9, 0); // Reservado
+        view.setUint16(10, 1, true); // Planos de color
+        view.setUint16(12, 32, true); // Bits por píxel
+        view.setUint32(14, pngBuffer.byteLength, true); // Tamaño del PNG
+        view.setUint32(18, headerSize, true); // Offset del PNG
+
+        new Uint8Array(icoBuffer, headerSize).set(new Uint8Array(pngBuffer));
+        return new Blob([icoBuffer], { type: "image/x-icon" });
+    }
+
+    function updateFormatControls() {
+        const mime = formatSelect.value;
+        const isPng = mime === "image/png";
+        const isIco = mime === "image/x-icon";
+
+        qualityRange.disabled = isPng || isIco;
         if (qualityHint) {
-            qualityHint.textContent = isPng
-                ? "PNG usa compresión sin pérdida; el control de calidad aplica a JPG y WebP."
-                : "Ajusta el equilibrio entre peso y nitidez visual.";
+            if (isIco) {
+                qualityHint.textContent = "ICO genera un icono cuadrado sin pérdida listo para Windows o favicon.";
+            } else if (isPng) {
+                qualityHint.textContent = "PNG usa compresión sin pérdida; el control de calidad aplica a JPG y WebP.";
+            } else {
+                qualityHint.textContent = "Ajusta el equilibrio entre peso y nitidez visual.";
+            }
         }
+
+        if (maxWidthWrap) maxWidthWrap.classList.toggle("d-none", isIco);
+        if (icoSizeWrap) icoSizeWrap.classList.toggle("d-none", !isIco);
+    }
+
+    function updateOutputUI(outputBlob, previewBlob, width, height) {
+        compressedBlob = outputBlob;
+        if (compressedUrl) URL.revokeObjectURL(compressedUrl);
+        compressedUrl = URL.createObjectURL(previewBlob);
+
+        compressedPreview.src = compressedUrl;
+        compressedStats.textContent = `${formatBytes(outputBlob.size)} · ${width} × ${height} px`;
+
+        const diff = currentFile.size - outputBlob.size;
+        const pct = currentFile.size > 0 ? Math.round((diff / currentFile.size) * 100) : 0;
+
+        if (pct > 0) {
+            savingsBadge.textContent = `-${pct}% (${formatBytes(diff)} ahorrados)`;
+            savingsBadge.className = "badge bg-success-subtle text-success border border-success-subtle";
+        } else if (pct === 0) {
+            savingsBadge.textContent = "Mismo peso";
+            savingsBadge.className = "badge bg-light text-secondary border";
+        } else {
+            savingsBadge.textContent = `+${Math.abs(pct)}%`;
+            savingsBadge.className = "badge bg-warning-subtle text-warning-emphasis border border-warning-subtle";
+        }
+
+        downloadBtn.disabled = false;
     }
 
     function processImage() {
@@ -61,8 +129,34 @@
 
         const mime = formatSelect.value;
         const quality = Number(qualityRange.value) / 100;
-        const maxWidth = parseInt(maxWidthInput.value, 10);
 
+        if (mime === "image/x-icon") {
+            const icoSize = parseInt(icoSizeSelect?.value || "256", 10) || 256;
+            const canvas = document.createElement("canvas");
+            canvas.width = icoSize;
+            canvas.height = icoSize;
+            const ctx = canvas.getContext("2d");
+
+            // Centrar y escalar manteniendo proporción (contain) sobre fondo transparente
+            const scale = Math.min(icoSize / currentImage.naturalWidth, icoSize / currentImage.naturalHeight);
+            const drawW = Math.round(currentImage.naturalWidth * scale);
+            const drawH = Math.round(currentImage.naturalHeight * scale);
+            const offsetX = Math.floor((icoSize - drawW) / 2);
+            const offsetY = Math.floor((icoSize - drawH) / 2);
+            ctx.drawImage(currentImage, offsetX, offsetY, drawW, drawH);
+
+            canvas.toBlob(async (pngBlob) => {
+                if (!pngBlob) {
+                    showError("No se pudo generar el archivo ICO.");
+                    return;
+                }
+                const icoBlob = await buildIcoFromPngBlob(pngBlob, icoSize);
+                updateOutputUI(icoBlob, pngBlob, icoSize, icoSize);
+            }, "image/png");
+            return;
+        }
+
+        const maxWidth = parseInt(maxWidthInput.value, 10);
         let targetWidth = currentImage.naturalWidth;
         let targetHeight = currentImage.naturalHeight;
 
@@ -89,28 +183,7 @@
                     showError("No se pudo procesar la imagen en este formato.");
                     return;
                 }
-                compressedBlob = blob;
-                if (compressedUrl) URL.revokeObjectURL(compressedUrl);
-                compressedUrl = URL.createObjectURL(blob);
-
-                compressedPreview.src = compressedUrl;
-                compressedStats.textContent = `${formatBytes(blob.size)} · ${targetWidth} × ${targetHeight} px`;
-
-                const diff = currentFile.size - blob.size;
-                const pct = currentFile.size > 0 ? Math.round((diff / currentFile.size) * 100) : 0;
-
-                if (pct > 0) {
-                    savingsBadge.textContent = `-${pct}% (${formatBytes(diff)} ahorrados)`;
-                    savingsBadge.className = "badge bg-success-subtle text-success border border-success-subtle";
-                } else if (pct === 0) {
-                    savingsBadge.textContent = "Mismo peso";
-                    savingsBadge.className = "badge bg-light text-secondary border";
-                } else {
-                    savingsBadge.textContent = `+${Math.abs(pct)}% (prueba JPG o WebP)`;
-                    savingsBadge.className = "badge bg-warning-subtle text-warning-emphasis border border-warning-subtle";
-                }
-
-                downloadBtn.disabled = false;
+                updateOutputUI(blob, blob, targetWidth, targetHeight);
             },
             mime,
             mime === "image/png" ? undefined : quality
@@ -134,7 +207,7 @@
             originalPreview.src = originalUrl;
             originalStats.textContent = `${formatBytes(file.size)} · ${img.naturalWidth} × ${img.naturalHeight} px`;
             controlsPanel.classList.remove("d-none");
-            updateQualityAvailability();
+            updateFormatControls();
             processImage();
         };
         img.onerror = () => {
@@ -173,9 +246,13 @@
     });
 
     formatSelect.addEventListener("change", () => {
-        updateQualityAvailability();
+        updateFormatControls();
         processImage();
     });
+
+    if (icoSizeSelect) {
+        icoSizeSelect.addEventListener("change", processImage);
+    }
 
     qualityRange.addEventListener("input", () => {
         qualityValue.textContent = `${qualityRange.value}%`;
@@ -190,10 +267,12 @@
         if (!compressedBlob || !currentFile) return;
         const baseName = currentFile.name.replace(/\.[^/.]+$/, "");
         const ext = getExtensionForMime(formatSelect.value);
+        const downloadUrl = URL.createObjectURL(compressedBlob);
         const link = document.createElement("a");
-        link.href = compressedUrl;
+        link.href = downloadUrl;
         link.download = `${baseName}-amazeme.${ext}`;
         link.click();
+        setTimeout(() => URL.revokeObjectURL(downloadUrl), 3000);
     });
 
     resetBtn.addEventListener("click", () => {
@@ -206,4 +285,3 @@
         showError("");
     });
 })();
-

@@ -1,307 +1,10 @@
-:root {
-    --amz-accent: #0F766E;
-    --amz-accent-hover: #115E59;
-    --amz-accent-soft: #F0FDFA;
-    --amz-accent-border: #99F6E4;
-    --amz-bg: #F7F7F5;
-    --amz-surface: #FFFFFF;
-    --amz-surface-muted: #EFEFEA;
-    --amz-border: #E4E4E7;
-    --amz-border-strong: #D4D4D8;
-    --amz-text: #111827;
-    --amz-muted: #52525B;
-    --amz-font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --amz-font-display: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
+/* Estilos mínimos complementarios sobre Bootstrap 5.3 */
 
-    /* Sobrescritura de tokens Bootstrap 5 */
-    --bs-primary: #0F766E;
-    --bs-primary-rgb: 15, 118, 110;
-    --bs-link-color: #0F766E;
-    --bs-link-hover-color: #115E59;
-    --bs-body-bg: #F7F7F5;
-    --bs-body-color: #111827;
-    --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --bs-border-color: #E4E4E7;
-}
-
-body {
-    background-color: var(--amz-bg);
-    color: var(--amz-text);
-    font-family: var(--amz-font-sans);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6,
-.navbar-brand {
-    font-family: var(--amz-font-display);
-    letter-spacing: -0.025em;
-    color: var(--amz-text);
-}
-
-main {
-    flex: 1 0 auto;
-}
-
-/* Botones Bootstrap personalizados */
-.btn-primary {
-    --bs-btn-bg: var(--amz-accent);
-    --bs-btn-border-color: var(--amz-accent);
-    --bs-btn-hover-bg: var(--amz-accent-hover);
-    --bs-btn-hover-border-color: var(--amz-accent-hover);
-    --bs-btn-active-bg: var(--amz-accent-hover);
-    --bs-btn-active-border-color: var(--amz-accent-hover);
-    font-weight: 500;
-    border-radius: 0.5rem;
-}
-
-.btn-outline-primary {
-    --bs-btn-color: var(--amz-accent);
-    --bs-btn-border-color: var(--amz-border-strong);
-    --bs-btn-hover-bg: var(--amz-accent);
-    --bs-btn-hover-border-color: var(--amz-accent);
-    --bs-btn-hover-color: #FFFFFF;
-    --bs-btn-active-bg: var(--amz-accent-hover);
-    --bs-btn-active-border-color: var(--amz-accent-hover);
-    font-weight: 500;
-    border-radius: 0.5rem;
-}
-
-/* Header editorial */
-.amz-header {
-    background-color: rgba(247, 247, 245, 0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--amz-border);
-}
-
-.amz-brand-mark {
-    width: 28px;
-    height: 28px;
-    border-radius: 0.4rem;
-    background-color: var(--amz-text);
-    color: #FFFFFF;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-    flex-shrink: 0;
-}
-
-.amz-header .nav-link {
-    color: var(--amz-muted);
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 0.4rem 0.65rem;
-    border-radius: 0.4rem;
-    transition: color 0.15s ease, background-color 0.15s ease;
-}
-
-.amz-header .nav-link:hover {
-    color: var(--amz-text);
-    background-color: rgba(17, 24, 39, 0.04);
-}
-
-.amz-header .nav-link.active {
-    color: var(--amz-accent) !important;
-    background-color: var(--amz-accent-soft);
-}
-
-/* Cabecera de inicio (Hero utilitario asimétrico) */
-.amz-hero {
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--amz-border);
-    margin-bottom: 2rem;
-}
-
-.amz-hero-title {
-    font-size: clamp(1.85rem, 3.2vw, 2.55rem);
-    font-weight: 700;
-    line-height: 1.12;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.75rem;
-}
-
-.amz-hero-lead {
-    color: var(--amz-muted);
-    font-size: 1.02rem;
-    line-height: 1.55;
-    max-width: 54ch;
-    margin-bottom: 0;
-}
-
-/* Buscador rápido */
-.amz-search-box {
-    display: flex;
-    align-items: center;
-    background-color: var(--amz-surface);
-    border: 1px solid var(--amz-border-strong);
-    border-radius: 0.6rem;
-    padding: 0.2rem 0.75rem;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.amz-search-box:focus-within {
-    border-color: var(--amz-accent);
-    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
-}
-
-.amz-search-box i {
-    color: var(--amz-muted);
-    font-size: 0.95rem;
-    flex-shrink: 0;
-}
-
-.amz-search-box .form-control {
-    border: 0;
-    background: transparent;
-    box-shadow: none !important;
-    padding: 0.55rem 0.65rem;
-    font-size: 0.95rem;
-    color: var(--amz-text);
-}
-
-.amz-search-box .form-control::placeholder {
-    color: #71717A;
-}
-
-/* Tarjetas Bento clickeables */
-.tool-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 1.5rem;
-    background-color: var(--amz-surface);
-    border: 1px solid var(--amz-border);
-    border-radius: 0.75rem;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.16s ease, background-color 0.16s ease, transform 0.16s ease;
-}
-
-.tool-card--featured {
-    padding: 1.75rem;
-}
-
-.tool-card:hover {
-    border-color: var(--amz-accent);
-    transform: translateY(-1px);
-    color: inherit;
-}
-
-.tool-card:focus-visible {
-    outline: 2px solid var(--amz-accent);
-    outline-offset: 2px;
-}
-
-.tool-card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.1rem;
-}
-
-.tool-icon-frame {
-    width: 40px;
-    height: 40px;
-    border-radius: 0.5rem;
-    background-color: var(--amz-bg);
-    border: 1px solid var(--amz-border);
-    color: var(--amz-text);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.15rem;
-    transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
-}
-
-.tool-card:hover .tool-icon-frame {
-    background-color: var(--amz-accent-soft);
-    border-color: var(--amz-accent-border);
-    color: var(--amz-accent);
-}
-
-.tool-card-arrow {
-    color: #A1A1AA;
-    font-size: 1rem;
-    line-height: 1;
-    transition: color 0.16s ease, transform 0.16s ease;
-}
-
-.tool-card:hover .tool-card-arrow {
-    color: var(--amz-accent);
-    transform: translate(2px, -2px);
-}
-
-.tool-card-title {
-    font-size: 1.08rem;
-    font-weight: 600;
-    margin-bottom: 0.45rem;
-    color: var(--amz-text);
-}
-
-.tool-card--featured .tool-card-title {
-    font-size: 1.2rem;
-}
-
-.tool-card-desc {
-    color: var(--amz-muted);
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 1.25rem;
-    flex-grow: 1;
-}
-
-.tool-card-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    padding-top: 0.85rem;
-    border-top: 1px solid var(--amz-bg);
-}
-
-.tool-tag {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--amz-muted);
-    background-color: var(--amz-bg);
-    border: 1px solid var(--amz-border);
-    border-radius: 0.35rem;
-    padding: 0.15rem 0.5rem;
-}
-
-/* Panel principal para páginas de herramientas y legales */
-.main-tool-panel {
-    background-color: var(--amz-surface);
-    border: 1px solid var(--amz-border);
-    border-radius: 0.75rem;
-}
-
-.tool-page-header {
-    padding-bottom: 1.25rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--amz-border);
-}
-
-.breadcrumb-item a {
-    color: var(--amz-muted);
-    text-decoration: none;
-}
-
-.breadcrumb-item a:hover {
-    color: var(--amz-text);
-}
-
-/* Zona Drag & Drop reutilizable (Imagen / PDF) */
 .drop-zone {
-    border: 1.5px dashed var(--amz-border-strong);
-    border-radius: 0.75rem;
-    background-color: var(--amz-bg);
-    padding: 2.25rem 1.25rem;
+    border: 2px dashed var(--bs-border-color);
+    border-radius: var(--bs-border-radius-lg);
+    background-color: var(--bs-tertiary-bg);
+    padding: 2.5rem 1.25rem;
     text-align: center;
     cursor: pointer;
     transition: border-color 0.15s ease, background-color 0.15s ease;
@@ -309,115 +12,63 @@ main {
 
 .drop-zone:hover,
 .drop-zone.drag-over {
-    border-color: var(--amz-accent);
-    background-color: var(--amz-accent-soft);
+    border-color: var(--bs-primary);
+    background-color: rgba(var(--bs-primary-rgb), 0.06);
 }
 
-/* Contenedores reservados para Google AdSense (CLS ≈ 0 y distancia segura de botones) */
 .ad-slot {
-    margin: 2rem auto;
+    margin: 1.75rem auto;
     padding: 0.75rem;
-    background-color: var(--amz-surface-muted);
-    border: 1px dashed var(--amz-border-strong);
-    border-radius: 0.65rem;
+    background-color: var(--bs-tertiary-bg);
+    border: 1px dashed var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #71717A;
-    font-size: 0.72rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    color: var(--bs-secondary-color);
+    font-size: 0.8rem;
 }
 
 .ad-slot-top {
-    min-height: 100px;
+    min-height: 90px;
 }
 
 .ad-slot-bottom {
     min-height: 250px;
 }
 
+.checkerboard {
+    background-color: #ffffff;
+    background-image:
+        linear-gradient(45deg, #e5e7eb 25%, transparent 25%),
+        linear-gradient(-45deg, #e5e7eb 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #e5e7eb 75%),
+        linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+}
+
+[data-bs-theme="dark"] .checkerboard {
+    background-color: #1f2428;
+    background-image:
+        linear-gradient(45deg, #2d3339 25%, transparent 25%),
+        linear-gradient(-45deg, #2d3339 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #2d3339 75%),
+        linear-gradient(-45deg, transparent 75%, #2d3339 75%);
+}
+
+/* Índice numérico generado dinámicamente por unir-pdf.js */
 .step-badge {
-    width: 30px;
-    height: 30px;
-    border-radius: 0.45rem;
-    background-color: var(--amz-accent-soft);
-    border: 1px solid var(--amz-accent-border);
-    color: var(--amz-accent);
+    width: 28px;
+    height: 28px;
+    border-radius: var(--bs-border-radius);
+    border: 1px solid var(--bs-border-color);
+    background-color: var(--bs-tertiary-bg);
     font-weight: 600;
     font-size: 0.85rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-}
-
-.privacy-banner {
-    background-color: var(--amz-accent-soft);
-    border: 1px solid var(--amz-accent-border);
-    color: var(--amz-accent-hover);
-    border-radius: 0.6rem;
-    font-size: 0.875rem;
-}
-
-/* Sección de garantías / ventajas */
-.amz-pillars {
-    border-top: 1px solid var(--amz-border);
-    padding-top: 2rem;
-}
-
-.amz-pillar-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 0.35rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.amz-pillar-title i {
-    color: var(--amz-accent);
-}
-
-.amz-pillar-desc {
-    color: var(--amz-muted);
-    font-size: 0.875rem;
-    line-height: 1.5;
-    margin-bottom: 0;
-}
-
-/* Footer */
-footer {
-    background-color: var(--amz-surface);
-    border-top: 1px solid var(--amz-border);
-}
-
-footer a {
-    color: var(--amz-muted);
-    text-decoration: none;
-    transition: color 0.15s ease;
-}
-
-footer a:hover {
-    color: var(--amz-text);
-    text-decoration: underline;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .tool-card,
-    .tool-icon-frame,
-    .tool-card-arrow,
-    .drop-zone,
-    .amz-search-box {
-        transition: none;
-    }
-
-    .tool-card:hover {
-        transform: none;
-    }
-
-    .tool-card:hover .tool-card-arrow {
-        transform: none;
-    }
+    flex-shrink: 0;
 }

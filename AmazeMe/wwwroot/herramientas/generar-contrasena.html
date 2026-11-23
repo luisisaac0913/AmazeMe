@@ -6,12 +6,14 @@
     <title>Generador de Contraseñas y Claves Seguras Online — AmazeMe</title>
     <meta name="description" content="Crea contraseñas aleatorias y passwords seguros con Web Crypto API, longitud personalizable y medidor de fortaleza 100% en tu navegador.">
     <link rel="canonical" href="https://amazeme.site/herramientas/generar-contrasena">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="google-adsense-account" content="ca-pub-1195315825340793">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="AmazeMe">
     <meta property="og:title" content="Generador de Contraseñas Seguras — AmazeMe">
-    <meta property="og:description" content="Crea claves seguras con entropía criptográfica local usando window.crypto.getRandomValues().">
+    <meta property="og:description" content="Crea claves aleatorias seguras con longitud personalizable y medidor de fortaleza.">
     <meta property="og:url" content="https://amazeme.site/herramientas/generar-contrasena">
 
     <!-- JSON-LD -->
@@ -40,15 +42,15 @@
               "name": "¿Cómo se generan las contraseñas en AmazeMe?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Se utiliza la API nativa window.crypto.getRandomValues() del navegador con muestreo uniforme, evitando generadores pseudoaleatorios débiles."
+                "text": "Se utiliza la API nativa window.crypto.getRandomValues() con muestreo uniforme para evitar generadores pseudoaleatorios débiles."
               }
             },
             {
               "@type": "Question",
-              "name": "¿Alguien puede ver las contraseñas que genero?",
+              "name": "¿Qué opciones de caracteres puedo combinar?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "No. Las claves se generan localmente en la memoria de tu dispositivo y nunca se transmiten ni almacenan en servidores."
+                "text": "Puedes activar o desactivar letras mayúsculas, minúsculas, números, símbolos y exclusión de caracteres ambiguos."
               }
             },
             {
@@ -73,42 +75,44 @@
     }
     </script>
 
-    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
-
     <!-- Bootstrap 5.3 & Bootstrap Icons CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
+    <script>try{const t=localStorage.getItem("amazeme-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-bs-theme",t);}catch{}</script>
 </head>
-<body>
-    <header class="amz-header sticky-top">
-        <nav class="navbar navbar-expand-lg container py-2" aria-label="Navegación principal">
-            <a class="navbar-brand fw-bold fs-5 d-flex align-items-center gap-2" href="/">
-                <span class="amz-brand-mark" aria-hidden="true">
-                    <i class="bi bi-lightning-charge-fill"></i>
-                </span>
-                <span>AmazeMe</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Mostrar menú">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto gap-lg-1">
-                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/herramientas/comprimir-imagen">Comprimir Imagen</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/herramientas/generar-qr">Generar QR</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/herramientas/unir-pdf">Unir PDF</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/herramientas/limpiar-texto">Limpiar Texto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/herramientas/generar-contrasena">Contraseñas</a></li>
-                </ul>
+<body class="d-flex flex-column min-vh-100 bg-body-tertiary">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-body border-bottom" aria-label="Navegación principal">
+            <div class="container">
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/">
+                    <img src="/img/amazeme-logo.png" alt="" width="28" height="28" class="rounded">
+                    <span>AmazeMe</span>
+                </a>
+                <div class="d-flex align-items-center gap-2 order-lg-2 ms-lg-3">
+                    <button type="button" id="theme-toggle" class="btn btn-outline-secondary btn-sm" aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro">
+                        <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+                    </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Mostrar menú">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse order-lg-1" id="mainNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/comprimir-imagen">Comprimir Imagen</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/quitar-fondo">Quitar Fondo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/generar-qr">Generar QR</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/unir-pdf">Unir PDF</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/limpiar-texto">Limpiar Texto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/generar-contrasena">Contraseñas</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
 
-    <main class="py-4 py-lg-5">
+    <main class="flex-grow-1 py-4 py-lg-5">
         <div class="container" style="max-width: 920px;">
             <nav aria-label="breadcrumb" class="mb-3">
                 <ol class="breadcrumb small mb-0">
@@ -121,82 +125,77 @@
                 <span>Publicidad</span>
             </div>
 
-            <section class="main-tool-panel p-4 p-md-5">
-                <div class="tool-page-header">
-                    <h1 class="h2 fw-bold mb-2">Generador de Contraseñas Seguras</h1>
-                    <p class="text-secondary mb-0">Crea claves aleatorias mediante Web Crypto API listas para copiar en un clic.</p>
-                </div>
-
-                <div id="pw-error" class="alert alert-danger d-none mb-3" role="alert"></div>
-
-                <div class="input-group input-group-lg mb-3">
-                    <input type="text" id="pw-output" class="form-control font-monospace" readonly aria-label="Contraseña generada">
-                    <button type="button" id="pw-generate-btn" class="btn btn-outline-secondary" title="Generar nueva contraseña" aria-label="Generar nueva contraseña">
-                        <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" id="pw-copy-btn" class="btn btn-primary">
-                        <i class="bi bi-clipboard me-1" aria-hidden="true"></i> Copiar
-                    </button>
-                </div>
-
-                <!-- Medidor de fortaleza -->
-                <div class="mb-4">
-                    <div class="d-flex justify-content-between small mb-1">
-                        <span class="text-secondary">Fortaleza estimada</span>
-                        <span id="pw-strength-label" class="fw-semibold">—</span>
-                    </div>
-                    <div class="progress" style="height: 8px;">
-                        <div id="pw-strength-bar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-
-                <!-- Opciones -->
-                <div class="border rounded-3 p-3 bg-light mb-4">
-                    <div class="mb-3">
-                        <label for="pw-length" class="form-label small fw-semibold d-flex justify-content-between">
-                            <span>Longitud de la contraseña</span>
-                            <span id="pw-length-value">16</span>
-                        </label>
-                        <input type="range" id="pw-length" class="form-range" min="8" max="64" value="16">
+            <section class="card shadow-sm mb-4">
+                <div class="card-body p-4 p-md-5">
+                    <div class="border-bottom pb-3 mb-4">
+                        <h1 class="h3 fw-bold mb-1">Generador de Contraseñas Seguras</h1>
+                        <p class="text-secondary mb-0">Crea claves aleatorias personalizando longitud y conjunto de caracteres.</p>
                     </div>
 
-                    <div class="row g-2">
-                        <div class="col-sm-6 col-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="pw-upper" checked>
-                                <label class="form-check-label small" for="pw-upper">Mayúsculas (A–Z)</label>
-                            </div>
+                    <div id="pw-error" class="alert alert-danger d-none mb-3" role="alert"></div>
+
+                    <div class="input-group input-group-lg mb-3">
+                        <input type="text" id="pw-output" class="form-control font-monospace" readonly aria-label="Contraseña generada">
+                        <button type="button" id="pw-generate-btn" class="btn btn-outline-secondary" title="Generar nueva contraseña" aria-label="Generar nueva contraseña">
+                            <i class="bi bi-arrow-clockwise" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" id="pw-copy-btn" class="btn btn-primary">
+                            <i class="bi bi-clipboard me-1" aria-hidden="true"></i> Copiar
+                        </button>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between small mb-1">
+                            <span class="text-secondary">Fortaleza estimada</span>
+                            <span id="pw-strength-label" class="fw-semibold">—</span>
                         </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="pw-lower" checked>
-                                <label class="form-check-label small" for="pw-lower">Minúsculas (a–z)</label>
-                            </div>
+                        <div class="progress" style="height: 8px;">
+                            <div id="pw-strength-bar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="pw-numbers" checked>
-                                <label class="form-check-label small" for="pw-numbers">Números (0–9)</label>
-                            </div>
+                    </div>
+
+                    <div class="border rounded p-3 bg-body-tertiary">
+                        <div class="mb-3">
+                            <label for="pw-length" class="form-label small fw-semibold d-flex justify-content-between">
+                                <span>Longitud de la contraseña</span>
+                                <span id="pw-length-value">16</span>
+                            </label>
+                            <input type="range" id="pw-length" class="form-range" min="8" max="64" value="16">
                         </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="pw-symbols" checked>
-                                <label class="form-check-label small" for="pw-symbols">Símbolos (!@#$...)</label>
+
+                        <div class="row g-2">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="pw-upper" checked>
+                                    <label class="form-check-label small" for="pw-upper">Mayúsculas (A–Z)</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6 col-md-8">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="pw-no-ambiguous">
-                                <label class="form-check-label small" for="pw-no-ambiguous">Evitar caracteres ambiguos (0, O, 1, l, I)</label>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="pw-lower" checked>
+                                    <label class="form-check-label small" for="pw-lower">Minúsculas (a–z)</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="pw-numbers" checked>
+                                    <label class="form-check-label small" for="pw-numbers">Números (0–9)</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="pw-symbols" checked>
+                                    <label class="form-check-label small" for="pw-symbols">Símbolos (!@#$...)</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-8">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="pw-no-ambiguous">
+                                    <label class="form-check-label small" for="pw-no-ambiguous">Evitar caracteres ambiguos (0, O, 1, l, I)</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="privacy-banner px-3 py-2 d-flex align-items-center gap-2">
-                    <i class="bi bi-shield-lock" aria-hidden="true"></i>
-                    <span>Procesamiento 100% local: tus contraseñas se generan en tu dispositivo y nunca se envían a la red.</span>
                 </div>
             </section>
 
@@ -208,24 +207,27 @@
                 <h2 class="h4 fw-bold mb-3">Cómo crear una contraseña segura en 3 pasos</h2>
                 <div class="row g-3">
                     <div class="col-md-4">
-                        <div class="main-tool-panel p-3 h-100">
-                            <span class="step-badge mb-2">1</span>
-                            <h3 class="h6 fw-bold">Define la longitud</h3>
-                            <p class="small text-secondary mb-0">Elige entre 8 y 64 caracteres según los requisitos del servicio.</p>
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="h6 fw-bold">1. Define la longitud</h3>
+                                <p class="small text-secondary mb-0">Elige entre 8 y 64 caracteres según los requisitos del servicio.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="main-tool-panel p-3 h-100">
-                            <span class="step-badge mb-2">2</span>
-                            <h3 class="h6 fw-bold">Selecciona caracteres</h3>
-                            <p class="small text-secondary mb-0">Combina mayúsculas, minúsculas, números y símbolos para mayor entropía.</p>
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="h6 fw-bold">2. Selecciona caracteres</h3>
+                                <p class="small text-secondary mb-0">Combina mayúsculas, minúsculas, números y símbolos para mayor entropía.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="main-tool-panel p-3 h-100">
-                            <span class="step-badge mb-2">3</span>
-                            <h3 class="h6 fw-bold">Copia y guarda</h3>
-                            <p class="small text-secondary mb-0">Copia tu nueva clave en un clic y guárdala en tu gestor de contraseñas.</p>
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="h6 fw-bold">3. Copia y guarda</h3>
+                                <p class="small text-secondary mb-0">Copia tu nueva clave en un clic y guárdala en tu gestor de contraseñas.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -242,19 +244,19 @@
                         </h3>
                         <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
                             <div class="accordion-body small text-secondary">
-                                Se utiliza la API nativa <code>window.crypto.getRandomValues()</code> del navegador con muestreo uniforme, evitando generadores pseudoaleatorios débiles.
+                                Se utiliza la API nativa <code>window.crypto.getRandomValues()</code> con muestreo uniforme para evitar generadores pseudoaleatorios débiles.
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <h3 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
-                                ¿Alguien puede ver las contraseñas que genero?
+                                ¿Qué opciones de caracteres puedo combinar?
                             </button>
                         </h3>
                         <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                             <div class="accordion-body small text-secondary">
-                                No. Las claves se generan localmente en la memoria de tu dispositivo y nunca se transmiten ni almacenan en servidores.
+                                Puedes activar o desactivar letras mayúsculas, minúsculas, números, símbolos y exclusión de caracteres ambiguos.
                             </div>
                         </div>
                     </div>
@@ -287,19 +289,19 @@
         </div>
     </main>
 
-    <footer class="py-4 mt-auto">
+    <footer class="bg-body border-top py-4 mt-auto">
         <div class="container">
             <div class="row align-items-center gy-3">
                 <div class="col-md-6 text-center text-md-start">
                     <span class="fw-semibold">AmazeMe</span>
-                    <span class="text-secondary small ms-2">© <span id="current-year">2026</span> · Utilidades web rápidas y privadas.</span>
+                    <span class="text-secondary small ms-2">&copy; <span id="current-year">2026</span></span>
                 </div>
                 <div class="col-md-6">
                     <ul class="nav justify-content-center justify-content-md-end gap-3 small">
-                        <li class="nav-item"><a href="/legal/acerca-de">Acerca de</a></li>
-                        <li class="nav-item"><a href="/legal/contacto">Contacto</a></li>
-                        <li class="nav-item"><a href="/legal/privacidad">Privacidad</a></li>
-                        <li class="nav-item"><a href="/legal/terminos">Términos</a></li>
+                        <li class="nav-item"><a class="link-secondary text-decoration-none" href="/legal/acerca-de">Acerca de</a></li>
+                        <li class="nav-item"><a class="link-secondary text-decoration-none" href="/legal/contacto">Contacto</a></li>
+                        <li class="nav-item"><a class="link-secondary text-decoration-none" href="/legal/privacidad">Privacidad</a></li>
+                        <li class="nav-item"><a class="link-secondary text-decoration-none" href="/legal/terminos">Términos</a></li>
                     </ul>
                 </div>
             </div>

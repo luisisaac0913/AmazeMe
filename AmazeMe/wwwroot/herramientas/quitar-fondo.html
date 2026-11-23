@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quitar Fondo de Imágenes Gratis con IA Online — AmazeMe</title>
+    <meta name="description" content="Elimina el fondo de tus fotos e imágenes gratis con IA directamente en tu navegador. Descarga el resultado en PNG con fondo transparente y privacidad total.">
+    <link rel="canonical" href="https://amazeme.site/herramientas/quitar-fondo">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="google-adsense-account" content="ca-pub-1195315825340793">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AmazeMe">
+    <meta property="og:title" content="Quitar Fondo con IA — AmazeMe">
+    <meta property="og:description" content="Borra el fondo de cualquier fotografía y obtén un PNG transparente listo para descargar.">
+    <meta property="og:url" content="https://amazeme.site/herramientas/quitar-fondo">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Quitar Fondo con IA — AmazeMe",
+          "url": "https://amazeme.site/herramientas/quitar-fondo",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "All",
+          "inLanguage": "es",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Qué formatos de entrada se aceptan para quitar el fondo?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Puedes cargar imágenes en formato JPG, PNG o WebP desde tu ordenador o teléfono."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Por qué tarda unos segundos adicionales la primera vez que la uso?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "En el primer uso se descarga y guarda en caché el modelo de segmentación. En los siguientes usos el recorte inicia de inmediato."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué ocurre si subo una foto muy grande desde el móvil?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Si la imagen supera los 2000 px en su lado mayor, se ajusta automáticamente antes de procesarla para evitar errores de memoria en teléfonos y tabletas."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿En qué formato se descarga la imagen sin fondo?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "El resultado se exporta en formato PNG con canal alfa transparente, listo para diseño, presentaciones o comercio electrónico."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Bootstrap 5.3 & Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <script>try{const t=localStorage.getItem("amazeme-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-bs-theme",t);}catch{}</script>
+</head>
+<body class="d-flex flex-column min-vh-100 bg-body-tertiary">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-body border-bottom" aria-label="Navegación principal">
+            <div class="container">
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/">
+                    <img src="/img/amazeme-logo.png" alt="" width="28" height="28" class="rounded">
+                    <span>AmazeMe</span>
+                </a>
+                <div class="d-flex align-items-center gap-2 order-lg-2 ms-lg-3">
+                    <button type="button" id="theme-toggle" class="btn btn-outline-secondary btn-sm" aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro">
+                        <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+                    </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Mostrar menú">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse order-lg-1" id="mainNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/comprimir-imagen">Comprimir Imagen</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/quitar-fondo">Quitar Fondo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/generar-qr">Generar QR</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/unir-pdf">Unir PDF</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/limpiar-texto">Limpiar Texto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/herramientas/generar-contrasena">Contraseñas</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow-1 py-4 py-lg-5">
+        <div class="container" style="max-width: 920px;">
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb small mb-0">
+                    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Quitar Fondo</li>
+                </ol>
+            </nav>
+
+            <div class="ad-slot ad-slot-top mt-0 mb-4" aria-label="Espacio publicitario">
+                <span>Publicidad</span>
+            </div>
+
+            <section class="card shadow-sm mb-4">
+                <div class="card-body p-4 p-md-5">
+                    <div class="border-bottom pb-3 mb-4">
+                        <h1 class="h3 fw-bold mb-1">Quitar Fondo con IA</h1>
+                        <p class="text-secondary mb-0">Elimina el fondo de personas, productos o gráficos y descarga el resultado en PNG transparente.</p>
+                    </div>
+
+                    <div id="bg-error" class="alert alert-danger d-none mb-3" role="alert"></div>
+
+                    <div id="bg-drop-zone" class="drop-zone mb-4" role="button" tabindex="0" aria-label="Seleccionar o arrastrar imagen para quitar fondo">
+                        <i class="bi bi-eraser fs-2 text-primary d-block mb-2" aria-hidden="true"></i>
+                        <p class="fw-semibold mb-1">Arrastra una imagen aquí o haz clic para seleccionarla</p>
+                        <p class="small text-secondary mb-0">Compatible con JPG, PNG y WebP</p>
+                        <input type="file" id="bg-file-input" class="d-none" accept="image/jpeg,image/png,image/webp,image/*">
+                    </div>
+
+                    <div id="bg-progress-wrap" class="border rounded p-3 bg-body-tertiary d-none mb-4" aria-live="polite">
+                        <div class="d-flex justify-content-between align-items-center small mb-2 gap-2">
+                            <span id="bg-progress-label" class="fw-semibold">Preparando...</span>
+                            <span id="bg-progress-percent" class="text-secondary">0%</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div id="bg-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <div id="bg-result-wrap" class="d-none">
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <div class="border rounded p-3 bg-body-tertiary h-100">
+                                    <div class="d-flex justify-content-between align-items-center mb-2 gap-2 flex-wrap">
+                                        <span class="small fw-semibold">Original</span>
+                                        <span id="bg-original-stats" class="small text-secondary">—</span>
+                                    </div>
+                                    <img id="bg-original-preview" class="img-fluid rounded border bg-body w-100" style="max-height: 260px; object-fit: contain;" alt="Imagen original">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="border rounded p-3 bg-body-tertiary h-100">
+                                    <div class="d-flex justify-content-between align-items-center mb-2 gap-2 flex-wrap">
+                                        <span class="small fw-semibold">Sin fondo (PNG)</span>
+                                        <span id="bg-result-stats" class="small text-secondary">—</span>
+                                    </div>
+                                    <img id="bg-result-preview" class="img-fluid rounded border checkerboard w-100" style="max-height: 260px; object-fit: contain;" alt="Imagen sin fondo con transparencia">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="button" id="bg-download-btn" class="btn btn-primary" disabled>
+                                <i class="bi bi-download me-1" aria-hidden="true"></i> Descargar PNG transparente
+                            </button>
+                            <button type="button" id="bg-reset-btn" class="btn btn-outline-secondary">
+                                Procesar otra imagen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="ad-slot ad-slot-bottom" aria-label="Espacio publicitario">
+                <span>Publicidad</span>
+            </div>
+
+            <section class="mb-5" aria-label="Cómo usar la herramienta">
+                <h2 class="h4 fw-bold mb-3">Cómo quitar el fondo en 3 pasos</h2>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="h6 fw-bold">1. Sube tu fotografía</h3>
+                                <p class="small text-secondary mb-0">Arrastra o elige un archivo JPG, PNG o WebP desde tu ordenador o teléfono.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="h6 fw-bold">2. Recorte automático</h3>
+                                <p class="small text-secondary mb-0">El modelo de segmentación separa el sujeto principal de forma automática.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="h6 fw-bold">3. Descarga tu PNG</h3>
+                                <p class="small text-secondary mb-0">Verifica la transparencia sobre la cuadrícula y guarda el archivo sin marcas de agua.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section aria-label="Preguntas frecuentes">
+                <h2 class="h4 fw-bold mb-3">Preguntas frecuentes</h2>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                                ¿Qué formatos de entrada se aceptan para quitar el fondo?
+                            </button>
+                        </h3>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body small text-secondary">
+                                Puedes cargar imágenes en formato JPG, PNG o WebP desde tu ordenador o teléfono.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                                ¿Por qué tarda unos segundos adicionales la primera vez que la uso?
+                            </button>
+                        </h3>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body small text-secondary">
+                                En el primer uso se descarga y guarda en caché el modelo de segmentación. En los siguientes usos el recorte inicia de inmediato.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                                ¿Qué ocurre si subo una foto muy grande desde el móvil?
+                            </button>
+                        </h3>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body small text-secondary">
+                                Si la imagen supera los 2000 px en su lado mayor, se ajusta automáticamente antes de procesarla para evitar errores de memoria en teléfonos y tabletas.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                                ¿En qué formato se descarga la imagen sin fondo?
+                            </button>
+                        </h3>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body small text-secondary">
+                                El resultado se exporta en formato PNG con canal alfa transparente, listo para diseño, presentaciones o comercio electrónico.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-body border-top py-4 mt-auto">
+        <div class="container">
+            <div class="row align-items-center gy-3">
+                <div class="col-md-6 text-center text-md-start">
+                    <span class="fw-semibold">AmazeMe</span>
+                    <span class="text-secondary small ms-2">&copy; <span id="current-year">2026</span></span>
+                </div>
+                <div class="col-md-6">
+                    <ul class="nav justify-content-center justify-content-md-end gap-3 small">
+                        <li class="nav-item"><a class="link-secondary text-decoration-none" href="/legal/acerca-de">Acerca de</a></li>
+                        <li class="nav-item"><a class="link-secondary text-decoration-none" href="/legal/contacto">Contacto</a></li>
+                        <li class="nav-item"><a class="link-secondary text-decoration-none" href="/legal/privacidad">Privacidad</a></li>
+                        <li class="nav-item"><a class="link-secondary text-decoration-none" href="/legal/terminos">Términos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/layout.js"></script>
+    <script type="module" src="/js/quitar-fondo.js"></script>
+</body>
+</html>
