@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmazeMe — Herramientas Online Gratis, Rápidas y 100% Privadas</title>
+    <meta name="description" content="Herramientas web online gratis sin registro ni programas: comprime y reduce el peso de imágenes, crea códigos QR, junta archivos PDF, limpia texto y genera contraseñas seguras.">
+    <link rel="canonical" href="https://amazeme.site/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AmazeMe">
+    <meta property="og:title" content="AmazeMe — Utilidades Web Rápidas y Privadas">
+    <meta property="og:description" content="Comprime imágenes, genera QR, une PDFs, limpia textos y crea contraseñas seguras 100% en tu navegador.">
+    <meta property="og:url" content="https://amazeme.site/">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3 & Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <header class="amz-header sticky-top">
+        <nav class="navbar navbar-expand-lg container py-2" aria-label="Navegación principal">
+            <a class="navbar-brand fw-bold fs-5 d-flex align-items-center gap-2" href="/">
+                <span class="amz-brand-mark" aria-hidden="true">
+                    <i class="bi bi-lightning-charge-fill"></i>
+                </span>
+                <span>AmazeMe</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Mostrar menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto gap-lg-1">
+                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/herramientas/comprimir-imagen">Comprimir Imagen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/herramientas/generar-qr">Generar QR</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/herramientas/unir-pdf">Unir PDF</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/herramientas/limpiar-texto">Limpiar Texto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/herramientas/generar-contrasena">Contraseñas</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="py-4 py-lg-5">
+        <div class="container">
+            <!-- Cabecera utilitaria asimétrica -->
+            <section class="amz-hero">
+                <div class="row align-items-end g-4">
+                    <div class="col-lg-7">
+                        <h1 class="amz-hero-title">Utilidades web rápidas que corren en tu navegador</h1>
+                        <p class="amz-hero-lead">
+                            Resuelve tareas con imágenes, PDF, códigos QR, texto y contraseñas al instante. Todo se procesa localmente en tu dispositivo, sin registros ni subidas.
+                        </p>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="amz-search-box">
+                            <i class="bi bi-search" aria-hidden="true"></i>
+                            <input type="search" id="tool-search" class="form-control" placeholder="Filtrar herramientas (PDF, QR, imagen, texto...)" aria-label="Buscar herramienta">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Catálogo Bento equilibrado (2 destacadas + 3 secundarias) -->
+            <section aria-label="Catálogo de herramientas">
+                <div class="row g-3 g-lg-4" id="tools-grid">
+                    <!-- Fila 1: 2 herramientas principales -->
+                    <div class="col-md-6" data-tool-item data-keywords="imagen foto comprimir convertir reducir bajar peso optimizar redimensionar jpg jpeg png webp kb mb calidad">
+                        <a href="/herramientas/comprimir-imagen" class="tool-card tool-card--featured">
+                            <div class="tool-card-top">
+                                <span class="tool-icon-frame" aria-hidden="true">
+                                    <i class="bi bi-file-earmark-image"></i>
+                                </span>
+                                <i class="bi bi-arrow-up-right tool-card-arrow" aria-hidden="true"></i>
+                            </div>
+                            <h2 class="tool-card-title">Comprimir y Convertir Imagen</h2>
+                            <p class="tool-card-desc">
+                                Reduce el peso de tus fotografías y gráficos o cambia entre formatos manteniendo la nitidez visual, sin enviar archivos a ningún servidor.
+                            </p>
+                            <div class="tool-card-meta">
+                                <span class="tool-tag">JPG</span>
+                                <span class="tool-tag">PNG</span>
+                                <span class="tool-tag">WebP</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6" data-tool-item data-keywords="pdf unir combinar juntar fusionar pegar agrupar reordenar ordenar paginas documentos">
+                        <a href="/herramientas/unir-pdf" class="tool-card tool-card--featured">
+                            <div class="tool-card-top">
+                                <span class="tool-icon-frame" aria-hidden="true">
+                                    <i class="bi bi-file-earmark-pdf"></i>
+                                </span>
+                                <i class="bi bi-arrow-up-right tool-card-arrow" aria-hidden="true"></i>
+                            </div>
+                            <h2 class="tool-card-title">Unir y Reordenar PDF</h2>
+                            <p class="tool-card-desc">
+                                Combina varios documentos PDF en un solo archivo y organiza el orden de las páginas directamente desde la memoria de tu navegador.
+                            </p>
+                            <div class="tool-card-meta">
+                                <span class="tool-tag">Combinar</span>
+                                <span class="tool-tag">Reordenar páginas</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Fila 2: 3 herramientas compactas -->
+                    <div class="col-md-6 col-lg-4" data-tool-item data-keywords="qr codigo crear generar enlace link url wifi svg png vectorial descargar">
+                        <a href="/herramientas/generar-qr" class="tool-card">
+                            <div class="tool-card-top">
+                                <span class="tool-icon-frame" aria-hidden="true">
+                                    <i class="bi bi-qr-code"></i>
+                                </span>
+                                <i class="bi bi-arrow-up-right tool-card-arrow" aria-hidden="true"></i>
+                            </div>
+                            <h2 class="tool-card-title">Generador de Códigos QR</h2>
+                            <p class="tool-card-desc">
+                                Crea códigos QR personalizados en colores y tamaño para enlaces o texto, listos para descargar sin marcas de agua.
+                            </p>
+                            <div class="tool-card-meta">
+                                <span class="tool-tag">PNG</span>
+                                <span class="tool-tag">SVG vectorial</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4" data-tool-item data-keywords="texto limpiar depurar formatear espacios saltos lineas duplicados contador contar palabras caracteres mayusculas minusculas">
+                        <a href="/herramientas/limpiar-texto" class="tool-card">
+                            <div class="tool-card-top">
+                                <span class="tool-icon-frame" aria-hidden="true">
+                                    <i class="bi bi-fonts"></i>
+                                </span>
+                                <i class="bi bi-arrow-up-right tool-card-arrow" aria-hidden="true"></i>
+                            </div>
+                            <h2 class="tool-card-title">Limpiador de Texto y Contador</h2>
+                            <p class="tool-card-desc">
+                                Elimina saltos de línea o espacios duplicados, alterna mayúsculas y consulta el conteo de palabras y caracteres en vivo.
+                            </p>
+                            <div class="tool-card-meta">
+                                <span class="tool-tag">Formato</span>
+                                <span class="tool-tag">Conteo en vivo</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-12 col-lg-4" data-tool-item data-keywords="contrasena clave password passwords segura fuerte generador crear aleatorio crypto entropia">
+                        <a href="/herramientas/generar-contrasena" class="tool-card">
+                            <div class="tool-card-top">
+                                <span class="tool-icon-frame" aria-hidden="true">
+                                    <i class="bi bi-key-fill"></i>
+                                </span>
+                                <i class="bi bi-arrow-up-right tool-card-arrow" aria-hidden="true"></i>
+                            </div>
+                            <h2 class="tool-card-title">Generador de Contraseñas</h2>
+                            <p class="tool-card-desc">
+                                Genera claves aleatorias criptográficamente seguras con longitud y conjunto de caracteres a medida en un clic.
+                            </p>
+                            <div class="tool-card-meta">
+                                <span class="tool-tag">Web Crypto API</span>
+                                <span class="tool-tag">1 clic</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="no-tools-found" class="alert alert-light border text-center mt-4 d-none" role="status">
+                    No se encontraron herramientas que coincidan con tu búsqueda.
+                </div>
+            </section>
+
+            <!-- Espacio reservado AdSense debajo del catálogo -->
+            <div class="ad-slot ad-slot-bottom my-5" aria-label="Espacio publicitario">
+                <span>Publicidad</span>
+            </div>
+
+            <!-- Ventajas de AmazeMe -->
+            <section class="amz-pillars" aria-label="Garantías de la plataforma">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <h3 class="amz-pillar-title">
+                            <i class="bi bi-cpu" aria-hidden="true"></i>
+                            <span>100% en tu navegador</span>
+                        </h3>
+                        <p class="amz-pillar-desc">
+                            El procesamiento ocurre íntegramente en tu equipo mediante APIs web estándar. Ningún archivo viaja a servidores externos.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="amz-pillar-title">
+                            <i class="bi bi-lightning-charge" aria-hidden="true"></i>
+                            <span>Carga instantánea</span>
+                        </h3>
+                        <p class="amz-pillar-desc">
+                            Interfaz ligera sin cuentas ni formularios previos, pensada para resolver tareas concretas desde escritorio o móvil.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="amz-pillar-title">
+                            <i class="bi bi-check2-circle" aria-hidden="true"></i>
+                            <span>Gratis y sin límites</span>
+                        </h3>
+                        <p class="amz-pillar-desc">
+                            Utiliza cada herramienta las veces que necesites sin marcas de agua, topes diarios ni suscripciones ocultas.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="py-4 mt-auto">
+        <div class="container">
+            <div class="row align-items-center gy-3">
+                <div class="col-md-6 text-center text-md-start">
+                    <span class="fw-semibold">AmazeMe</span>
+                    <span class="text-secondary small ms-2">© <span id="current-year">2026</span> · Utilidades web rápidas y privadas.</span>
+                </div>
+                <div class="col-md-6">
+                    <ul class="nav justify-content-center justify-content-md-end gap-3 small">
+                        <li class="nav-item"><a href="/legal/acerca-de">Acerca de</a></li>
+                        <li class="nav-item"><a href="/legal/contacto">Contacto</a></li>
+                        <li class="nav-item"><a href="/legal/privacidad">Privacidad</a></li>
+                        <li class="nav-item"><a href="/legal/terminos">Términos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/layout.js"></script>
+</body>
+</html>
