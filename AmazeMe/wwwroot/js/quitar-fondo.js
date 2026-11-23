@@ -15,8 +15,8 @@ const resetBtn = document.getElementById("bg-reset-btn");
 
 const MAX_SIDE_PX = 2000;
 const CDN_ENDPOINTS = [
-    "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/+esm",
-    "https://esm.sh/@imgly/background-removal@1.5.5"
+    "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm",
+    "https://esm.sh/@imgly/background-removal@1.7.0?bundle"
 ];
 
 let removeBackgroundFn = null;
