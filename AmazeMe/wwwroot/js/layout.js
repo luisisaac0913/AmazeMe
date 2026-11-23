@@ -67,7 +67,7 @@
             if (!href) return;
             const normalizedHref = href.replace(/\/+$/, "") || "/";
             if (currentPath === normalizedHref) {
-                link.classList.add("active", "fw-semibold", "text-primary");
+                link.classList.add("active", "fw-semibold");
                 link.setAttribute("aria-current", "page");
             }
         });

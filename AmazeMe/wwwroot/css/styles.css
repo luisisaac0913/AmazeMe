@@ -1,4 +1,235 @@
-/* Estilos mínimos complementarios sobre Bootstrap 5.3 */
+/* ==========================================================================
+   AmazeMe — Tema Verde sobre Bootstrap 5.3
+   ========================================================================== */
+
+:root,
+[data-bs-theme="light"] {
+    --amz-green: #16a34a;
+    --amz-green-hover: #15803d;
+    --amz-green-active: #166534;
+    --amz-green-text: #15803d;
+    --amz-green-soft: rgba(22, 163, 74, 0.1);
+    --amz-green-border: rgba(22, 163, 74, 0.45);
+    --amz-green-focus-ring: rgba(22, 163, 74, 0.25);
+    --amz-card-hover-shadow: rgba(22, 163, 74, 0.14);
+
+    /* Sobrescritura global de Bootstrap 5 */
+    --bs-primary: #16a34a;
+    --bs-primary-rgb: 22, 163, 74;
+    --bs-link-color: #15803d;
+    --bs-link-color-rgb: 21, 128, 61;
+    --bs-link-hover-color: #166534;
+    --bs-link-hover-color-rgb: 22, 101, 52;
+    --bs-focus-ring-color: rgba(22, 163, 74, 0.25);
+
+    accent-color: #16a34a;
+}
+
+[data-bs-theme="dark"] {
+    --amz-green: #22c55e;
+    --amz-green-hover: #16a34a;
+    --amz-green-active: #15803d;
+    --amz-green-text: #4ade80;
+    --amz-green-soft: rgba(34, 197, 94, 0.14);
+    --amz-green-border: rgba(34, 197, 94, 0.45);
+    --amz-green-focus-ring: rgba(34, 197, 94, 0.28);
+    --amz-card-hover-shadow: rgba(0, 0, 0, 0.45);
+
+    --bs-primary: #16a34a;
+    --bs-primary-rgb: 22, 163, 74;
+    --bs-link-color: #4ade80;
+    --bs-link-color-rgb: 74, 222, 128;
+    --bs-link-hover-color: #86efac;
+    --bs-link-hover-color-rgb: 134, 239, 172;
+    --bs-focus-ring-color: rgba(34, 197, 94, 0.28);
+
+    accent-color: #22c55e;
+}
+
+/* ==========================================================================
+   Utilidades y botones en verde
+   ========================================================================== */
+
+.text-primary {
+    color: var(--amz-green-text) !important;
+}
+
+.border-primary {
+    border-color: var(--amz-green) !important;
+}
+
+.btn {
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    --bs-btn-color: #ffffff;
+    --bs-btn-bg: #16a34a;
+    --bs-btn-border-color: #16a34a;
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: #15803d;
+    --bs-btn-hover-border-color: #15803d;
+    --bs-btn-focus-shadow-rgb: 22, 163, 74;
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-active-bg: #166534;
+    --bs-btn-active-border-color: #166534;
+    --bs-btn-disabled-color: #ffffff;
+    --bs-btn-disabled-bg: #16a34a;
+    --bs-btn-disabled-border-color: #16a34a;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--amz-green-text);
+    --bs-btn-border-color: var(--amz-green);
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: #16a34a;
+    --bs-btn-hover-border-color: #16a34a;
+    --bs-btn-focus-shadow-rgb: 22, 163, 74;
+    --bs-btn-active-color: #ffffff;
+    --bs-btn-active-bg: #15803d;
+    --bs-btn-active-border-color: #15803d;
+    --bs-btn-disabled-color: var(--amz-green-text);
+    --bs-btn-disabled-border-color: var(--amz-green);
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn:focus-visible,
+.navbar-toggler:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--amz-green);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0.25rem var(--amz-green-focus-ring);
+}
+
+/* ==========================================================================
+   Navegación superior con píldora verde activa
+   ========================================================================== */
+
+.navbar-nav {
+    gap: 0.25rem;
+}
+
+.navbar-nav .nav-link {
+    border-radius: 9999px;
+    padding: 0.42rem 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--amz-green-text);
+    background-color: var(--amz-green-soft);
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.active.text-primary {
+    background-color: #16a34a;
+    color: #ffffff !important;
+    border-radius: 9999px;
+    padding: 0.42rem 0.95rem;
+}
+
+.navbar-nav .nav-link.active:hover,
+.navbar-nav .nav-link.active.text-primary:hover {
+    background-color: #15803d;
+    color: #ffffff !important;
+}
+
+/* ==========================================================================
+   Inputs, búsqueda, sliders, checkboxes y barras de progreso en verde
+   ========================================================================== */
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--amz-green);
+    box-shadow: 0 0 0 0.25rem var(--amz-green-focus-ring);
+}
+
+.input-group:focus-within .input-group-text {
+    border-color: var(--amz-green);
+    color: var(--amz-green-text);
+}
+
+.form-check-input:checked {
+    background-color: #16a34a;
+    border-color: #16a34a;
+}
+
+.form-check-input:focus {
+    border-color: var(--amz-green);
+    box-shadow: 0 0 0 0.25rem var(--amz-green-focus-ring);
+}
+
+.form-range::-webkit-slider-thumb {
+    background-color: #16a34a;
+}
+
+.form-range::-moz-range-thumb {
+    background-color: #16a34a;
+}
+
+.form-range:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 1px #ffffff, 0 0 0 0.25rem var(--amz-green-focus-ring);
+}
+
+.form-range:focus::-moz-range-thumb {
+    box-shadow: 0 0 0 1px #ffffff, 0 0 0 0.25rem var(--amz-green-focus-ring);
+}
+
+.progress-bar,
+.progress-bar.bg-primary {
+    background-color: #16a34a !important;
+}
+
+/* ==========================================================================
+   Acordeón FAQ en verde suave
+   ========================================================================== */
+
+.accordion {
+    --bs-accordion-active-color: var(--amz-green-text);
+    --bs-accordion-active-bg: var(--amz-green-soft);
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem var(--amz-green-focus-ring);
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2315803d' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .accordion {
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%234ade80' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+.accordion-button {
+    transition: all 0.2s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--amz-green-text);
+    background-color: var(--amz-green-soft);
+    box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--amz-green-border);
+}
+
+.accordion-button:focus {
+    border-color: var(--amz-green);
+    box-shadow: 0 0 0 0.25rem var(--amz-green-focus-ring);
+}
+
+/* ==========================================================================
+   Tarjetas de herramientas, drop-zone, AdSense, checkerboard y animaciones
+   ========================================================================== */
+
+#tools-grid .card {
+    transition: all 0.2s ease;
+}
+
+#tools-grid .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--amz-green-border);
+    box-shadow: 0 0.5rem 1.25rem var(--amz-card-hover-shadow) !important;
+}
 
 .drop-zone {
     border: 2px dashed var(--bs-border-color);
@@ -7,13 +238,19 @@
     padding: 2.5rem 1.25rem;
     text-align: center;
     cursor: pointer;
-    transition: border-color 0.15s ease, background-color 0.15s ease;
+    transition: all 0.2s ease;
 }
 
 .drop-zone:hover,
 .drop-zone.drag-over {
-    border-color: var(--bs-primary);
-    background-color: rgba(var(--bs-primary-rgb), 0.06);
+    border-color: var(--amz-green);
+    background-color: var(--amz-green-soft);
+}
+
+.drop-zone:focus-visible {
+    outline: 2px solid var(--amz-green);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0.25rem var(--amz-green-focus-ring);
 }
 
 .ad-slot {
@@ -71,4 +308,63 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+}
+
+/* Animaciones de entrada al mostrar resultados, listas, alertas y acordeón */
+@keyframes amzFadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes amzFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#img-controls:not(.d-none),
+#bg-progress-wrap:not(.d-none),
+#bg-result-wrap:not(.d-none),
+#pdf-actions:not(.d-none),
+#pdf-file-list > li,
+.alert:not(.d-none) {
+    animation: amzFadeSlideUp 0.25s ease-out;
+}
+
+.accordion-collapse.show .accordion-body {
+    animation: amzFadeIn 0.22s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .navbar-nav .nav-link,
+    .accordion-button,
+    #tools-grid .card,
+    .drop-zone {
+        transition: none;
+    }
+
+    .btn:hover:not(:disabled),
+    #tools-grid .card:hover {
+        transform: none;
+    }
+
+    #img-controls:not(.d-none),
+    #bg-progress-wrap:not(.d-none),
+    #bg-result-wrap:not(.d-none),
+    #pdf-actions:not(.d-none),
+    #pdf-file-list > li,
+    .alert:not(.d-none),
+    .accordion-collapse.show .accordion-body {
+        animation: none;
+    }
 }
