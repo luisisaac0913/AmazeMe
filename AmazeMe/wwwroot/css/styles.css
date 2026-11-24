@@ -122,7 +122,8 @@ a:focus-visible {
     transition: all 0.2s ease;
 }
 
-.navbar-nav .nav-link:hover {
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.show {
     color: var(--amz-green-text);
     background-color: var(--amz-green-soft);
 }
@@ -136,9 +137,33 @@ a:focus-visible {
 }
 
 .navbar-nav .nav-link.active:hover,
-.navbar-nav .nav-link.active.text-primary:hover {
+.navbar-nav .nav-link.active.text-primary:hover,
+.navbar-nav .nav-link.active.show {
     background-color: #15803d;
     color: #ffffff !important;
+}
+
+.dropdown-menu {
+    border-color: var(--bs-border-color);
+    padding: 0.35rem;
+}
+
+.dropdown-item {
+    border-radius: var(--bs-border-radius-sm);
+    padding: 0.45rem 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: var(--amz-green-text);
+    background-color: var(--amz-green-soft);
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #16a34a;
+    color: #ffffff;
 }
 
 /* ==========================================================================
@@ -187,7 +212,8 @@ a:focus-visible {
     background-color: #16a34a !important;
 }
 
-#bg-progress-bar {
+#bg-progress-bar,
+#cmp-pdf-progress-bar {
     transition: width 0.2s ease;
 }
 
@@ -314,6 +340,25 @@ a:focus-visible {
     flex-shrink: 0;
 }
 
+/* Cuentagotas y muestras de color */
+.color-eyedropper-canvas {
+    cursor: crosshair;
+    max-width: 100%;
+    max-height: 380px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin-inline: auto;
+}
+
+.color-swatch-box {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--bs-border-radius);
+    border: 1px solid var(--bs-border-color);
+    flex-shrink: 0;
+}
+
 /* Animaciones de entrada al mostrar resultados, listas, alertas y acordeón */
 @keyframes amzFadeSlideUp {
     from {
@@ -340,6 +385,15 @@ a:focus-visible {
 #bg-result-wrap:not(.d-none),
 #pdf-actions:not(.d-none),
 #pdf-file-list > li,
+#split-controls:not(.d-none),
+#split-individual-list > li,
+#img-pdf-actions:not(.d-none),
+#img-pdf-list > li,
+#cmp-pdf-controls:not(.d-none),
+#cmp-pdf-progress-wrap:not(.d-none),
+#cmp-pdf-result:not(.d-none),
+#resize-controls:not(.d-none),
+#palette-controls:not(.d-none),
 .alert:not(.d-none) {
     animation: amzFadeSlideUp 0.25s ease-out;
 }
@@ -351,10 +405,12 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
     .btn,
     .navbar-nav .nav-link,
+    .dropdown-item,
     .accordion-button,
     #tools-grid .card,
     .drop-zone,
-    #bg-progress-bar {
+    #bg-progress-bar,
+    #cmp-pdf-progress-bar {
         transition: none;
     }
 
@@ -368,6 +424,15 @@ a:focus-visible {
     #bg-result-wrap:not(.d-none),
     #pdf-actions:not(.d-none),
     #pdf-file-list > li,
+    #split-controls:not(.d-none),
+    #split-individual-list > li,
+    #img-pdf-actions:not(.d-none),
+    #img-pdf-list > li,
+    #cmp-pdf-controls:not(.d-none),
+    #cmp-pdf-progress-wrap:not(.d-none),
+    #cmp-pdf-result:not(.d-none),
+    #resize-controls:not(.d-none),
+    #palette-controls:not(.d-none),
     .alert:not(.d-none),
     .accordion-collapse.show .accordion-body {
         animation: none;

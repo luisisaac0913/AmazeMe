@@ -56,11 +56,12 @@
     }
 
     /**
-     * Marca el enlace activo en la barra de navegación comparando rutas limpias.
+     * Marca el enlace activo en la barra de navegación (incluyendo menús desplegables) comparando rutas limpias.
      */
     function highlightActiveNavLink() {
         const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
         const navLinks = document.querySelectorAll("header .nav-link[href]");
+        const dropdownItems = document.querySelectorAll("header .dropdown-item[href]");
 
         navLinks.forEach((link) => {
             const href = link.getAttribute("href");
@@ -69,6 +70,21 @@
             if (currentPath === normalizedHref) {
                 link.classList.add("active", "fw-semibold");
                 link.setAttribute("aria-current", "page");
+            }
+        });
+
+        dropdownItems.forEach((item) => {
+            const href = item.getAttribute("href");
+            if (!href) return;
+            const normalizedHref = href.replace(/\/+$/, "") || "/";
+            if (currentPath === normalizedHref) {
+                item.classList.add("active");
+                item.setAttribute("aria-current", "page");
+                const parentDropdown = item.closest(".nav-item.dropdown");
+                const toggle = parentDropdown?.querySelector(".nav-link.dropdown-toggle");
+                if (toggle) {
+                    toggle.classList.add("active", "fw-semibold");
+                }
             }
         });
     }
