@@ -36,6 +36,31 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://amazeme.site/herramientas/dividir-pdf</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://amazeme.site/herramientas/imagenes-a-pdf</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://amazeme.site/herramientas/comprimir-pdf</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://amazeme.site/herramientas/redimensionar-imagen</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://amazeme.site/herramientas/extraer-colores</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://amazeme.site/legal/acerca-de</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>

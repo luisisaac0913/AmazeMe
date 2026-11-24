@@ -49,12 +49,32 @@
                 <div class="collapse navbar-collapse order-lg-1" id="mainNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/herramientas/comprimir-imagen">Comprimir Imagen</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/herramientas/quitar-fondo">Quitar Fondo</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/herramientas/generar-qr">Generar QR</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/herramientas/unir-pdf">Unir PDF</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/herramientas/limpiar-texto">Limpiar Texto</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/herramientas/generar-contrasena">Contraseñas</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">PDF</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/herramientas/unir-pdf">Unir PDF</a></li>
+                                <li><a class="dropdown-item" href="/herramientas/dividir-pdf">Dividir PDF</a></li>
+                                <li><a class="dropdown-item" href="/herramientas/comprimir-pdf">Comprimir PDF</a></li>
+                                <li><a class="dropdown-item" href="/herramientas/imagenes-a-pdf">Imágenes a PDF</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Imágenes</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/herramientas/comprimir-imagen">Comprimir Imagen</a></li>
+                                <li><a class="dropdown-item" href="/herramientas/redimensionar-imagen">Redimensionar Imagen</a></li>
+                                <li><a class="dropdown-item" href="/herramientas/quitar-fondo">Quitar Fondo</a></li>
+                                <li><a class="dropdown-item" href="/herramientas/extraer-colores">Extraer Colores</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Texto y Seguridad</a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="/herramientas/generar-qr">Generar QR</a></li>
+                                <li><a class="dropdown-item" href="/herramientas/limpiar-texto">Limpiar Texto</a></li>
+                                <li><a class="dropdown-item" href="/herramientas/generar-contrasena">Contraseñas</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -178,6 +198,91 @@
                                     Genera claves aleatorias seguras eligiendo longitud, tipos de caracteres y medidor de fortaleza en un clic.
                                 </p>
                                 <a href="/herramientas/generar-contrasena" class="btn btn-outline-primary mt-2 align-self-start">
+                                    Abrir herramienta
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4" data-tool-item data-keywords="pdf dividir separar extraer rango paginas hojas documento">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="mb-3 text-primary fs-3">
+                                    <i class="bi bi-scissors" aria-hidden="true"></i>
+                                </div>
+                                <h2 class="h5 card-title fw-bold">Dividir PDF</h2>
+                                <p class="card-text text-secondary flex-grow-1">
+                                    Extrae rangos específicos de páginas o separa todo un documento PDF en archivos individuales.
+                                </p>
+                                <a href="/herramientas/dividir-pdf" class="btn btn-outline-primary mt-2 align-self-start">
+                                    Abrir herramienta
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4" data-tool-item data-keywords="imagenes pdf convertir jpg png fotos documento orientacion vertical horizontal">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="mb-3 text-primary fs-3">
+                                    <i class="bi bi-images" aria-hidden="true"></i>
+                                </div>
+                                <h2 class="h5 card-title fw-bold">Imágenes a PDF</h2>
+                                <p class="card-text text-secondary flex-grow-1">
+                                    Combina múltiples fotografías JPG o PNG en un solo archivo PDF eligiendo orden y orientación.
+                                </p>
+                                <a href="/herramientas/imagenes-a-pdf" class="btn btn-outline-primary mt-2 align-self-start">
+                                    Abrir herramienta
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4" data-tool-item data-keywords="pdf comprimir reducir peso optimizar kb mb tamaño documento">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="mb-3 text-primary fs-3">
+                                    <i class="bi bi-file-earmark-zip" aria-hidden="true"></i>
+                                </div>
+                                <h2 class="h5 card-title fw-bold">Comprimir PDF</h2>
+                                <p class="card-text text-secondary flex-grow-1">
+                                    Reduce el peso de documentos PDF eligiendo el nivel de compresión con comparativa de tamaño.
+                                </p>
+                                <a href="/herramientas/comprimir-pdf" class="btn btn-outline-primary mt-2 align-self-start">
+                                    Abrir herramienta
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4" data-tool-item data-keywords="imagen redimensionar cambiar tamaño pixeles ancho alto proporcion jpg png webp">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="mb-3 text-primary fs-3">
+                                    <i class="bi bi-aspect-ratio" aria-hidden="true"></i>
+                                </div>
+                                <h2 class="h5 card-title fw-bold">Redimensionar Imagen</h2>
+                                <p class="card-text text-secondary flex-grow-1">
+                                    Ajusta el ancho y alto en píxeles o aplica medidas predefinidas manteniendo la proporción.
+                                </p>
+                                <a href="/herramientas/redimensionar-imagen" class="btn btn-outline-primary mt-2 align-self-start">
+                                    Abrir herramienta
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4" data-tool-item data-keywords="colores paleta extraer cuentagotas hex rgb imagen diseño">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="mb-3 text-primary fs-3">
+                                    <i class="bi bi-palette" aria-hidden="true"></i>
+                                </div>
+                                <h2 class="h5 card-title fw-bold">Extraer Colores de Imagen</h2>
+                                <p class="card-text text-secondary flex-grow-1">
+                                    Obtén la paleta de colores dominantes en HEX y RGB y captura tonos exactos con el cuentagotas.
+                                </p>
+                                <a href="/herramientas/extraer-colores" class="btn btn-outline-primary mt-2 align-self-start">
                                     Abrir herramienta
                                 </a>
                             </div>
