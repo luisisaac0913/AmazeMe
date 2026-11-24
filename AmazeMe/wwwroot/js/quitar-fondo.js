@@ -20,6 +20,7 @@ const CDN_ENDPOINTS = [
 ];
 
 let removeBackgroundFn = null;
+let hasLoadedModel = false;
 let originalUrl = null;
 let resultUrl = null;
 let resultBlob = null;
@@ -40,22 +41,37 @@ function formatBytes(bytes) {
     return `${(bytes / Math.pow(k, i)).toFixed(i === 0 ? 0 : 1)} ${sizes[i]}`;
 }
 
-function setProgress(label, pct, indeterminate = false) {
+function setProgress(label, pct, indeterminate = false, displayPct = null) {
     if (!progressWrap) return;
     progressWrap.classList.remove("d-none");
     progressLabel.textContent = label;
 
     const clamped = Math.max(0, Math.min(100, Math.round(pct)));
-    progressPercent.textContent = indeterminate ? "Procesando" : `${clamped}%`;
+    const shownPct = displayPct === null ? clamped : Math.max(0, Math.min(100, Math.round(displayPct)));
+    progressPercent.textContent = indeterminate ? "Procesando..." : `${shownPct}%`;
     progressBar.style.width = `${indeterminate ? 100 : clamped}%`;
     progressBar.setAttribute("aria-valuenow", String(indeterminate ? 100 : clamped));
     progressBar.classList.toggle("progress-bar-striped", indeterminate);
     progressBar.classList.toggle("progress-bar-animated", indeterminate);
 }
 
+function resetProgressBar() {
+    if (!progressWrap || !progressBar) return;
+    progressBar.classList.remove("progress-bar-striped", "progress-bar-animated");
+    progressBar.style.transition = "none";
+    progressBar.style.width = "0%";
+    progressBar.setAttribute("aria-valuenow", "0");
+    // Fuerza reflow para reiniciar la barra en 0% sin animar hacia atrás
+    void progressBar.offsetWidth;
+    progressBar.style.transition = "";
+    if (progressLabel) progressLabel.textContent = "Preparando...";
+    if (progressPercent) progressPercent.textContent = "0%";
+}
+
 function hideProgress() {
     if (!progressWrap) return;
     progressWrap.classList.add("d-none");
+    resetProgressBar();
 }
 
 async function loadBgRemovalModule() {
@@ -155,7 +171,9 @@ async function processFile(file) {
     resultBlob = null;
     downloadBtn.disabled = true;
     resultWrap.classList.add("d-none");
+    resultPreview.removeAttribute("src");
     dropZone.classList.add("d-none");
+    resetProgressBar();
 
     currentFileName = file.name.replace(/\.[^/.]+$/, "") || "imagen";
 
@@ -164,18 +182,32 @@ async function processFile(file) {
     originalPreview.src = originalUrl;
 
     try {
-        setProgress("Preparando imagen...", 5);
+        let maxVisualPct = 5;
+        const advanceProgress = (label, targetPct, indeterminate = false, displayPct = null) => {
+            maxVisualPct = Math.max(maxVisualPct, targetPct);
+            setProgress(label, maxVisualPct, indeterminate, displayPct);
+        };
+
+        advanceProgress("Preparando imagen...", 5);
         const prepared = await prepareImageForMobileSafety(file);
 
         originalStats.textContent = prepared.wasResized
             ? `${formatBytes(file.size)} · ${prepared.origWidth} × ${prepared.origHeight} px (ajustada a ${prepared.width} × ${prepared.height} px)`
             : `${formatBytes(file.size)} · ${prepared.origWidth} × ${prepared.origHeight} px`;
 
-        setProgress("Cargando motor local...", 10);
+        advanceProgress(hasLoadedModel ? "Inicializando motor de recorte..." : "Cargando motor de recorte...", 12);
         const removeBackground = await loadBgRemovalModule();
 
         let lastDownloadPct = 0;
         let inInference = false;
+        const modelWasCached = hasLoadedModel;
+
+        const getComputeLabel = (keyStr) => {
+            if (keyStr.includes("decode")) return "Leyendo imagen...";
+            if (keyStr.includes("mask")) return "Aplicando transparencia...";
+            if (keyStr.includes("encode")) return "Generando PNG transparente...";
+            return "Recortando fondo...";
+        };
 
         const outputBlob = await removeBackground(prepared.inputBlob, {
             output: {
@@ -186,24 +218,36 @@ async function processFile(file) {
                 const keyStr = String(key || "").toLowerCase();
                 if (keyStr.includes("compute")) {
                     inInference = true;
-                    const pct = total > 0 ? Math.round((current / total) * 100) : 100;
-                    setProgress("Recortando fondo...", pct, total <= 0);
+                    const ratio = total > 0 ? Math.min(1, Math.max(0, current / total)) : 1;
+                    const startPct = modelWasCached ? 20 : 60;
+                    const mappedPct = startPct + Math.round(ratio * (100 - startPct));
+                    advanceProgress(getComputeLabel(keyStr), mappedPct);
                     return;
                 }
 
                 if (!inInference) {
+                    if (modelWasCached) {
+                        advanceProgress("Inicializando modelo...", 18);
+                        return;
+                    }
+
                     if (total > 0) {
-                        const pct = Math.min(100, Math.round((current / total) * 100));
-                        lastDownloadPct = Math.max(lastDownloadPct, pct);
-                        setProgress(`Descargando modelo local (solo la primera vez)... ${lastDownloadPct}%`, lastDownloadPct);
+                        const rawPct = Math.min(100, Math.max(0, Math.round((current / total) * 100)));
+                        lastDownloadPct = Math.max(lastDownloadPct, rawPct);
+                        const mappedPct = 12 + Math.round((lastDownloadPct / 100) * 48);
+                        advanceProgress(
+                            "Descargando modelo local (solo la primera vez)...",
+                            mappedPct
+                        );
                     } else {
-                        setProgress("Descargando modelo local (solo la primera vez)...", lastDownloadPct || 15, true);
+                        advanceProgress("Descargando modelo local (solo la primera vez)...", maxVisualPct, true);
                     }
                 }
             }
         });
 
-        setProgress("Recortando fondo...", 100);
+        hasLoadedModel = true;
+        advanceProgress("Recortando fondo...", 100);
 
         resultBlob = outputBlob;
         if (resultUrl) URL.revokeObjectURL(resultUrl);
@@ -219,6 +263,7 @@ async function processFile(file) {
         dropZone.classList.remove("d-none");
         showError(err?.message || "Ocurrió un error al quitar el fondo de la imagen. Intenta con otra imagen.");
     } finally {
+        fileInput.value = "";
         isProcessing = false;
     }
 }
@@ -235,6 +280,8 @@ function resetTool() {
     }
     resultBlob = null;
     fileInput.value = "";
+    originalPreview.removeAttribute("src");
+    resultPreview.removeAttribute("src");
     downloadBtn.disabled = true;
     resultWrap.classList.add("d-none");
     hideProgress();

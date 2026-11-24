@@ -187,6 +187,10 @@ a:focus-visible {
     background-color: #16a34a !important;
 }
 
+#bg-progress-bar {
+    transition: width 0.2s ease;
+}
+
 /* ==========================================================================
    Acordeón FAQ en verde suave
    ========================================================================== */
@@ -349,7 +353,8 @@ a:focus-visible {
     .navbar-nav .nav-link,
     .accordion-button,
     #tools-grid .card,
-    .drop-zone {
+    .drop-zone,
+    #bg-progress-bar {
         transition: none;
     }
 
